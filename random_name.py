@@ -1,9 +1,10 @@
 import random
+import tkinter as tk
+
+from PIL import Image
 
 def rch(ch):
     return random.choice(ch)
-
-import tkinter as tk
 
 word_list = [
     ["o", "bre", "a", "lu", "har", "blu", "con", "rab", "alu", "zin", "ma", "ar", "po", "sa", "jo", "rho", "ena"], 
@@ -23,3 +24,10 @@ elif combo == 2:
 
 print(output.capitalize())
 print(combo)
+
+img = Image.new('RGB', (16, 16))
+
+img.save("instance.png")
+
+imgo = Image.open("instance.png")
+imgo.show()
