@@ -34,3 +34,4 @@ imgo = Image.open("instance.png")
 imgo.show()
 
 util.grayscalify('test.png')
+util.colorify('test.png')
