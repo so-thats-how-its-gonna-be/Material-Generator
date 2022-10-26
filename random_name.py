@@ -1,5 +1,6 @@
 import random
 import tkinter as tk
+import util
 
 from PIL import Image
 
@@ -31,3 +32,5 @@ img.save("instance.png")
 
 imgo = Image.open("instance.png")
 imgo.show()
+
+util.grayscalify('test.png')
