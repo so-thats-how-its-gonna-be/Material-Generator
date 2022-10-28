@@ -29,24 +29,38 @@ elif combo == 2:
 print(output.capitalize())
 print(combo)
 
-references = os.getcwd() + "/material-references/"
+matreferences = os.getcwd() + "/material-references/"
 
-reference = rch(os.listdir(references))
-
-img = Image.open(references + reference).copy()
-
-img.save('instance.png')
-
+matimg = Image.open(matreferences + rch(os.listdir(matreferences))).copy().save('instance.png')
 util.grayscalify('instance.png')
-util.colorify('instance.png')
+
+R = random.randint(-200, 200)
+G = random.randint(-200, 200)
+B = random.randint(-200, 200)
+util.colorify('instance.png', R, G, B)
+
+blockreferences = os.getcwd() + "/block-references/"
+
+blockimg = Image.open(blockreferences + rch(os.listdir(blockreferences))).copy().save('block-instance.png')
+util.grayscalify('block-instance.png')
+
+util.colorify('block-instance.png', R/2, G/2, B/2)
 
 root = Tk()
 frm = Frame(root, padx=10, pady=10)
+
+ttk.Label(frm, text=output.capitalize()).grid(column=1, row=0)
 frmimg = ImageTk.PhotoImage(Image.open('instance.png').copy().resize([128, 128], 0))
 can = Canvas(frm, width=500, height=500)
 can.create_image(250, 250, image=frmimg, anchor=CENTER)
 can.grid(column=1, row=1)
+
+ttk.Label(frm, text=f"Block Of {output.capitalize()}").grid(column=1, row=2)
+frmblimg = ImageTk.PhotoImage(Image.open('block-instance.png').copy().resize([128, 128], 0))
+canbl = Canvas(frm, width=500, height=500)
+canbl.create_image(250, 250, image=frmblimg, anchor=CENTER)
+canbl.grid(column=1, row=3)
+
 frm.grid()
-ttk.Button(frm, text="Quit", command=root.destroy).grid(column=1, row=2)
-ttk.Label(frm, text=output.capitalize(), font=font.BOLD).grid(column=1, row=0)
+ttk.Button(frm, text="Quit", command=root.destroy).grid(column=1, row=4)
 root.mainloop()
