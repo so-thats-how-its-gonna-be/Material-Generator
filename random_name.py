@@ -1,6 +1,8 @@
 import random
+import os
 import tkinter as tk
 import util
+from pathlib import Path
 
 from PIL import Image
 
@@ -26,12 +28,15 @@ elif combo == 2:
 print(output.capitalize())
 print(combo)
 
-img = Image.new('RGB', (16, 16))
+references = os.getcwd() + "/material-references/"
 
-img.save("instance.png")
+reference = rch(os.listdir(references))
 
-imgo = Image.open("instance.png")
-imgo.show()
+img = Image.open(references + reference).copy()
 
-util.grayscalify('test.png')
-util.colorify('test.png')
+img.save('instance.png')
+
+util.grayscalify('instance.png')
+util.colorify('instance.png')
+
+Image.open('instance.png').show(output)
