@@ -16,4 +16,5 @@ def colorify(path, R, G, B):
         else:
             output.append(pix)
     image.putdata(output)
+    #image = image.transpose(random.randint(0, 4))
     image.save(path)
