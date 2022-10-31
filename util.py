@@ -1,13 +1,28 @@
+from random import randint, choice
 from tkinter import Image
 from PIL import Image
-from PIL import ImageFilter
 import math
-import random
+
+def rch(ch):
+    return choice(ch)
 
 def grayscalify(path):
+    """Make an image grayscale.
+
+    Args:
+        path (str): Path of the file to grayscale.
+    """
     Image.open(path).convert('LA').save(path)
 
 def colorify(path, R, G, B):
+    """Tint an image a color with RGB values.
+
+    Args:
+        path (str): Path of the file to tint.
+        R (float): Red value of RGB.
+        G (float): Green value of RGB.
+        B (float): Blue value of RGB.
+    """
     image = Image.open(path).convert('RGBA')
     output = []
     for pix in image.getdata():
@@ -16,5 +31,14 @@ def colorify(path, R, G, B):
         else:
             output.append(pix)
     image.putdata(output)
-    #image = image.transpose(random.randint(0, 4))
     image.save(path)
+
+def spin(path):
+    """Randomly rotate an image with a chance to do nothing.
+
+    Args:
+        path (str): Path of the file to randomly rotate.
+    """
+    if(randint(0, 2)==0):
+        return
+    Image.open(path).transpose(randint(0, 4)).save(path)
