@@ -3,7 +3,7 @@ import os
 from re import match
 import tkinter as ttk
 from tkinter import CENTER, Canvas, Frame, Tk
-from material import Material
+from material import Material, MaterialBlock
 import util
 
 from PIL import Image, ImageTk
@@ -63,3 +63,7 @@ canbl.grid(column=1, row=3)
 frm.grid()
 ttk.Button(frm, text="Quit", command=root.destroy).grid(column=1, row=4)
 root.mainloop()
+
+testmat = Material(output, "instance.png", (R, G, B))
+print(testmat)
+print(testmat.blockof("block-instance.png"))
