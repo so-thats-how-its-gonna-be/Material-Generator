@@ -1,7 +1,9 @@
 import random
 import os
+from re import match
 import tkinter as ttk
 from tkinter import CENTER, Canvas, Frame, Tk
+from material import Material
 import util
 
 from PIL import Image, ImageTk
@@ -11,7 +13,7 @@ wordlist = [
     ["o", "bre", "a", "lu", "har", "blu", "con", "rab", "alu", "zin", "ma", "ar", "po", "sa", "jo", "rho", "ena", "pi"], 
     ["b", "man", "n", "mon", "min", "len", "rom", "eg", "lo", "po"], 
     ["and", "s", "act", "san", "ad", "c", "atr"], 
-    ["ium", "inite", "ite", "in", "on", "ony"]]
+    ["ium", "inite", "ite", "in", "on", "ony", "ar", "en"]]
 
 output = ""
 
@@ -41,7 +43,7 @@ blockreferences = os.getcwd() + "/block-references/"
 blockimg = Image.open(blockreferences + util.rch(os.listdir(blockreferences))).copy().save('block-instance.png')
 util.grayscalify('block-instance.png')
 
-util.colorify('block-instance.png', R*0.8, G*0.8, B*0.8)
+util.colorify('block-instance.png', R*0.5, G*0.5, B*0.5)
 
 root = Tk()
 frm = Frame(root, padx=10, pady=10)
