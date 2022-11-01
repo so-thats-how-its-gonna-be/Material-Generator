@@ -6,7 +6,7 @@ import math
 def rch(ch):
     return choice(ch)
 
-def grayscalify(path):
+def grayscalify(path: str):
     """Make an image grayscale.
 
     Args:
@@ -14,7 +14,7 @@ def grayscalify(path):
     """
     Image.open(path).convert('LA').save(path)
 
-def colorify(path, R, G, B):
+def colorify(path: str, R: float, G: float, B: float):
     """Tint an image a color with RGB values.
 
     Args:
@@ -33,7 +33,7 @@ def colorify(path, R, G, B):
     image.putdata(output)
     image.save(path)
 
-def spin(path):
+def spin(path: str):
     """Randomly rotate an image with a chance to do nothing.
 
     Args:
