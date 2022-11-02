@@ -15,8 +15,6 @@ wordlist = [
     ["and", "s", "act", "san", "ad", "c", "atr"], 
     ["ium", "inite", "ite", "in", "on", "ony", "ar", "en"]]
 
-output = ""
-
 match random.randint(0, 2):
     case 0:
         output = util.rch(wordlist[0]) + util.rch(wordlist[1]) + util.rch(wordlist[2]) + util.rch(wordlist[3])
