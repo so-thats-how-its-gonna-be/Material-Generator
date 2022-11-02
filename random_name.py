@@ -17,13 +17,13 @@ wordlist = [
 
 output = ""
 
-combo = random.randint(0, 2)
-if combo == 0:
-    output = util.rch(wordlist[0]) + util.rch(wordlist[1]) + util.rch(wordlist[2]) + util.rch(wordlist[3])
-elif combo == 1:
-    output = util.rch(wordlist[0]) + util.rch(wordlist[1]) + util.rch(wordlist[3])
-elif combo == 2:
-    output = util.rch(wordlist[0]) + util.rch(wordlist[2]) + util.rch(wordlist[3])
+match random.randint(0, 2):
+    case 0:
+        output = util.rch(wordlist[0]) + util.rch(wordlist[1]) + util.rch(wordlist[2]) + util.rch(wordlist[3])
+    case 1:
+        output = util.rch(wordlist[0]) + util.rch(wordlist[1]) + util.rch(wordlist[3])
+    case 2:
+        output = util.rch(wordlist[0]) + util.rch(wordlist[2]) + util.rch(wordlist[3])
 
 output = output.capitalize()
 
