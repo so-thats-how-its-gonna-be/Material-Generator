@@ -1,7 +1,8 @@
+from math import floor as fl
 from random import randint as rint
 from tkinter import Image
+
 from PIL import Image
-from math import floor as fl
 
 def grayscalify(path: str):
     """Make an image grayscale.

@@ -1,11 +1,15 @@
-from random import choice as rch, randint as rint
 import os
 import tkinter as ttk
+from random import choice as rch
+from random import randint as rint
 from tkinter import CENTER, Canvas, Frame, Tk
-from material import Material
-import util
 
 from PIL import Image, ImageTk
+
+import util
+
+#* Python 3.11.0 
+#* Pillow 9.3.0
 
 #TODO: Add more parts to the wordlist
 WORD_LIST = [[], [], [], []]
@@ -16,13 +20,17 @@ for i, line in enumerate(open('wordlist.txt', 'r').readlines()):
 MATERIAL_FILE_PATH = 'material-instance.png'
 BLOCK_FILE_PATH = 'block-instance.png'
 
+MATERIAL_REFERENCES_FOLDER = 'material-references'
+BLOCK_REFERENCES_FOLDER = 'block-references'
+
 #Reference paths for block and material sprites
-MATERIAL_REFERENCES = os.path.join(os.getcwd(), "material-references", "")
-BLOCK_REFERENCES = os.path.join(os.getcwd(), "block-references", "")
+#Joins together the current directory, the desired reference folder, and then appends a blank string to the end of the path (resulting in a path that ends with a slash)
+MATERIAL_REFERENCES = os.path.join(os.getcwd(), MATERIAL_REFERENCES_FOLDER, '')
+BLOCK_REFERENCES = os.path.join(os.getcwd(), BLOCK_REFERENCES_FOLDER, '')
 
 def main():
     
-    #Reset the material name
+    #Define the material name
     material_name = ''
     
     #Generate a random name
