@@ -7,7 +7,6 @@ import util
 
 from PIL import Image, ImageTk
 
-
 wordlist = [[], [], [], []]
 for i, line in enumerate(open('wordlist.txt', 'r').readlines()):
     wordlist[i] = line.strip().split(' ')
