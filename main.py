@@ -1,3 +1,4 @@
+from functools import partial
 import os
 import tkinter as ttk
 from random import choice as rch
@@ -90,7 +91,7 @@ def main():
     canvas_block.create_image(IMG_SIZE[0]*2/3, IMG_SIZE[1]*2/3, image=frame_block_image, anchor=CENTER)
     canvas_block.grid(column=0, row=4)
 
-    #Gridify the frame, add the "done" button, and run the mainloop
+    ttk.Button(frame, text="Regenerate").grid(column=0, row=87)
     ttk.Button(frame, text="Done", command=root.destroy).grid(column=0, row=88)
     frame.grid()
     root.mainloop()
