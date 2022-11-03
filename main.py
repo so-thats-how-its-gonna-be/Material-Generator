@@ -67,29 +67,32 @@ def main():
 
     #Root window
     root = Tk()
-    frame = Frame(root, padx=10, pady=10)
+    frame = Frame(root)
 
     #Material name
-    ttk.Label(frame, text=material_name).grid(column=1, row=0)
-    frame_material_image = ImageTk.PhotoImage(Image.open(MATERIAL_FILE_PATH).copy().resize([128, 128], 0))
+    ttk.Label(frame, text=material_name).grid(column=0, row=0)
+    frame_material_image = ImageTk.PhotoImage(Image.open(MATERIAL_FILE_PATH).copy().resize([192, 192], 0))
     #Canvas containing the material sprite
-    canvas_material = Canvas(frame, width=500, height=500)
-    canvas_material.create_image(250, 250, image=frame_material_image, anchor=CENTER)
-    canvas_material.grid(column=1, row=1)
+    canvas_material = Canvas(frame, width=256, height=256)
+    canvas_material.create_image(128, 128, image=frame_material_image, anchor=CENTER)
+    canvas_material.grid(column=0, row=1)
+
+    #Add separator between material and block
+    ttk.Label(frame, text='\n\n').grid(column=0, row=2)
 
     #Name of block form
-    ttk.Label(frame, text=f"Block Of {material_name}").grid(column=1, row=2)
-    frame_block_image = ImageTk.PhotoImage(Image.open(BLOCK_FILE_PATH).copy().resize([128, 128], 0))
+    ttk.Label(frame, text=f"Block Of {material_name}").grid(column=0, row=3)
+    frame_block_image = ImageTk.PhotoImage(Image.open(BLOCK_FILE_PATH).copy().resize([192, 192], 0))
     #Canvas containing the block sprite
-    canvas_block = Canvas(frame, width=500, height=500)
-    canvas_block.create_image(250, 250, image=frame_block_image, anchor=CENTER)
-    canvas_block.grid(column=1, row=3)
+    canvas_block = Canvas(frame, width=256, height=256)
+    canvas_block.create_image(128, 128, image=frame_block_image, anchor=CENTER)
+    canvas_block.grid(column=0, row=4)
 
-    #Gridify the frame, add the "quit" button, and run the mainloop
-    #FIXME: The quit button doesn't appear
+    #Gridify the frame, add the "done" button, and run the mainloop
+    ttk.Button(frame, text="Done", command=root.destroy).grid(column=0, row=88)
     frame.grid()
-    ttk.Button(frame, text="Quit", command=root.destroy).grid(column=1, row=5)
     root.mainloop()
-#i-END OF MAIN
+
+#* END OF MAIN
 
 main()
