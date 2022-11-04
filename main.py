@@ -1,4 +1,3 @@
-from functools import partial
 import os
 import tkinter as ttk
 from random import choice as rch
@@ -7,7 +6,8 @@ from tkinter import CENTER, Canvas, Frame, Tk
 
 from PIL import Image, ImageTk
 
-import util
+import material
+import imgutils
 
 #* Python 3.11.0 
 #* Pillow 9.3.0
@@ -53,8 +53,8 @@ def main():
 
     #Generate a material sprite
     Image.open(MATERIAL_REFERENCES + rch(os.listdir(MATERIAL_REFERENCES))).copy().save(MATERIAL_FILE_PATH)
-    util.grayscalify(MATERIAL_FILE_PATH)
-    util.tint(MATERIAL_FILE_PATH, material_color)
+    imgutils.grayscalify(MATERIAL_FILE_PATH)
+    imgutils.tint(MATERIAL_FILE_PATH, material_color)
     #! Spin is disabled for now because the textures it generates are suboptimal.
     #util.spin(matfile)
     #! Flip is disabled for now because the textures it generates have incorrect lighting.
@@ -62,8 +62,8 @@ def main():
 
     #Generate a block sprite
     Image.open(BLOCK_REFERENCES + rch(os.listdir(BLOCK_REFERENCES))).copy().save(BLOCK_FILE_PATH)
-    util.grayscalify(BLOCK_FILE_PATH)
-    util.tint(BLOCK_FILE_PATH, tuple([number / 2 for number in material_color]))
+    imgutils.grayscalify(BLOCK_FILE_PATH)
+    imgutils.tint(BLOCK_FILE_PATH, tuple([number / 2 for number in material_color]))
 
     #Root window
     root = Tk()
@@ -94,5 +94,9 @@ def main():
     root.mainloop()
 
 #* END OF MAIN
+
+test = material.Metal("Iron", "nah", (0,0,0))
+print(test)
+print(material.RawMetal(test))
 
 main()
