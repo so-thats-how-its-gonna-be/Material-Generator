@@ -11,11 +11,8 @@ import util
 
 #* Python 3.11.0 
 #* Pillow 9.3.0
-
-#TODO: Add more parts to the wordlist
-WORD_LIST = [[], [], [], []]
-for index, line in enumerate(open('wordlist.txt', 'r').readlines()):
-    WORD_LIST[index] = line.strip().split(' ')
+    
+WORD_LIST = [line.strip().split(' ') for line in open('wordlist.txt', 'r').readlines()]
 
 #Paths for instantiated sprites
 MATERIAL_FILE_PATH = 'material-instance.png'
