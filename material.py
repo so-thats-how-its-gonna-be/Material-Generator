@@ -12,7 +12,7 @@ class Material:
     - Parent Sprite Path: {self.parentsprite}
     - Color: {self.color}"""
 
-class RawMaterial(Material):
+class MaterialRaw(Material):
     def __init__ (self, name: str, parentspritepath: str, color: tuple):
         super().__init__(name, parentspritepath, color)
         
@@ -65,7 +65,7 @@ class Metal(Gem):
     def __init__ (self, name: str, parentspritepath: str, color: tuple):
         super().__init__(name, parentspritepath, color)
         self.nugget = MaterialNugget(self)
-        self.raw = RawMaterial(self)
+        self.raw = MaterialRaw(self)
 
 # Unrefinable misc materials (like lapis, coal, or redstone)
 # material -> material block
