@@ -67,6 +67,7 @@ def main():
 
     #Root window
     root = Tk()
+    root.title('Material Generator')
     frame = Frame(root)
 
     #Material name
@@ -97,6 +98,6 @@ def main():
 
 test = material.Metal("Iron", "nah", (0,0,0))
 print(test)
-print(material.RawMetal(test))
+print(material.MaterialRaw(test))
 
 main()
