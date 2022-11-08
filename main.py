@@ -11,7 +11,7 @@ import imgutils
 
 #* Python 3.11.0 
 #* Pillow 9.3.0
-    
+
 WORD_LIST = [line.strip().split(' ') for line in open('wordlist.txt', 'r').readlines()]
 
 #Paths for instantiated sprites
@@ -26,6 +26,7 @@ BLOCK_REFERENCES_FOLDER = 'block-references'
 MATERIAL_REFERENCES = os.path.join(os.getcwd(), MATERIAL_REFERENCES_FOLDER, '')
 BLOCK_REFERENCES = os.path.join(os.getcwd(), BLOCK_REFERENCES_FOLDER, '')
 
+#How large the sprites will appear in the GUI
 IMG_SIZE = [192, 192]
 
 def main():
@@ -62,6 +63,8 @@ def main():
     Image.open(BLOCK_REFERENCES + rch(os.listdir(BLOCK_REFERENCES))).copy().save(BLOCK_FILE_PATH)
     imgutils.grayscalify(BLOCK_FILE_PATH)
     imgutils.tint(BLOCK_FILE_PATH, tuple([number / 2 for number in material_color]))
+    imgutils.spin(BLOCK_FILE_PATH)
+    imgutils.flip(BLOCK_FILE_PATH)
 
     #Root window
     root = Tk()

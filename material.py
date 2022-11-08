@@ -16,39 +16,39 @@ class MaterialRaw(Material):
     def __init__ (self, name: str, parentspritepath: str, color: tuple):
         super().__init__(name, parentspritepath, color)
         
-    def __init__ (self, material: Material, name="Undefined", parentspritepath="Undefined", color="Undefined"):
+    def __init__ (self, material: Material, name=None, parentspritepath=None, color=None):
         raw_name = name
         raw_color = color
         raw_parentspritepath = parentspritepath
-        if raw_name == "Undefined": raw_name = f"Raw {material.name}"
-        if raw_color == "Undefined": raw_color = material.color
-        if raw_parentspritepath == "Undefined": raw_parentspritepath = material.parentsprite
+        if raw_name == None: raw_name = f"Raw {material.name}"
+        if raw_color == None: raw_color = material.color
+        if raw_parentspritepath == None: raw_parentspritepath = material.parentsprite
         super().__init__(raw_name, raw_parentspritepath, raw_color)
 
 class MaterialNugget(Material):
     def __init__ (self, name: str, parentspritepath: str, color: tuple):
         super().__init__(name, parentspritepath, color)
     
-    def __init__ (self, material: Material, name="Undefined", parentspritepath="Undefined", color="Undefined"):
+    def __init__ (self, material: Material, name=None, parentspritepath=None, color=None):
         nugget_name = name
         nugget_color = color
         nugget_parentspritepath = parentspritepath
-        if nugget_name == "Undefined": nugget_name = f"{material.name} Nugget"
-        if nugget_color == "Undefined": nugget_color = material.color
-        if nugget_parentspritepath == "Undefined": nugget_parentspritepath = material.parentsprite
+        if nugget_name == None: nugget_name = f"{material.name} Nugget"
+        if nugget_color == None: nugget_color = material.color
+        if nugget_parentspritepath == None: nugget_parentspritepath = material.parentsprite
         super().__init__(nugget_name, nugget_parentspritepath, nugget_color)
 
 class MaterialBlock(Material):
     def __init__ (self, name: str, parentspritepath: str, color: tuple):
         super().__init__(name, parentspritepath, color)
     
-    def __init__ (self, material: Material, name="Undefined", parentspritepath="Undefined", color="Undefined"):
+    def __init__ (self, material: Material, name=None, parentspritepath=None, color=None):
         block_name = name
         block_color = color
         block_parentspritepath = parentspritepath
-        if block_name == "Undefined": block_name = rch([f"{material.name} Block", f"Block Of {material.name}"])
-        if block_color == "Undefined": block_color = material.color
-        if block_parentspritepath == "Undefined": block_parentspritepath = material.parentsprite
+        if block_name == None: block_name = rch([f"{material.name} Block", f"Block Of {material.name}"])
+        if block_color == None: block_color = material.color
+        if block_parentspritepath == None: block_parentspritepath = material.parentsprite
         super().__init__(block_name, block_parentspritepath, block_color)
 
 # Unrefinable materials (like diamond or emerald)
