@@ -55,10 +55,8 @@ def main():
     Image.open(MATERIAL_REFERENCES + rch(os.listdir(MATERIAL_REFERENCES))).copy().save(MATERIAL_FILE_PATH)
     imgutils.grayscalify(MATERIAL_FILE_PATH)
     imgutils.tint(MATERIAL_FILE_PATH, material_color)
-    #! Spin is disabled for now because the textures it generates are suboptimal.
-    #util.spin(matfile)
-    #! Flip is disabled for now because the textures it generates have incorrect lighting.
-    #util.flip(matfile, 0)
+    imgutils.spin(MATERIAL_FILE_PATH)
+    imgutils.flip(MATERIAL_FILE_PATH)
 
     #Generate a block sprite
     Image.open(BLOCK_REFERENCES + rch(os.listdir(BLOCK_REFERENCES))).copy().save(BLOCK_FILE_PATH)
