@@ -9,7 +9,7 @@ from PIL import Image, ImageTk
 import material
 import imgutils
 
-#* Python 3.11.0 
+#* Python 3.11.0
 #* Pillow 9.3.0
 
 WORD_LIST = [line.strip().split(' ') for line in open('wordlist.txt', 'r').readlines()]
@@ -30,10 +30,10 @@ BLOCK_REFERENCES = os.path.join(os.getcwd(), BLOCK_REFERENCES_FOLDER, '')
 IMG_SIZE = [192, 192]
 
 def main():
-    
+
     #Define the material name
     material_name = ''
-    
+
     #Generate a random name
     match rint(0, 2):
         case 0:
