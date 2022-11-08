@@ -1,4 +1,7 @@
 from random import choice as rch
+from random import randint as rint
+
+WORD_LIST = [line.strip().split(' ') for line in open('wordlist.txt', 'r').readlines()]
 
 class Material:
     def __init__(self, name: str, parent_sprite_path: str, color: tuple):
@@ -11,6 +14,21 @@ class Material:
 {self.name}:
     - Parent Sprite Path: {self.parent_sprite}
     - Color: {self.color}"""
+    
+    def random_name():
+        match rint(0, 2):
+            case 0:
+                #Part 1 + Part 2 + Part 3 + Part 4
+                return rch(WORD_LIST[0]) + rch(WORD_LIST[1]) + rch(WORD_LIST[2]) + rch(WORD_LIST[3])
+            case 1:
+                #Part 1 + Part 2 + Part 4
+                return rch(WORD_LIST[0]) + rch(WORD_LIST[1]) + rch(WORD_LIST[3])
+            case 2:
+                #Part 1 + Part 3 + Part 4
+                return rch(WORD_LIST[0]) + rch(WORD_LIST[2]) + rch(WORD_LIST[3])
+    
+    def random_color():
+        return (rint(-150, 150), rint(-150, 150), rint(-150, 150))
 
 class MaterialRaw(Material):
     def __init__ (self, name: str, parent_sprite_path: str, color: tuple):
