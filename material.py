@@ -1,7 +1,22 @@
+import os
+import imgutils
 from random import choice as rch
 from random import randint as rint
+from PIL import Image
 
 WORD_LIST = [line.strip().split(' ') for line in open('wordlist.txt', 'r').readlines()]
+
+#Paths for instantiated sprites
+MATERIAL_FILE_PATH = 'material-instance.png'
+BLOCK_FILE_PATH = 'block-instance.png'
+
+MATERIAL_REFERENCES_FOLDER = 'material-references'
+BLOCK_REFERENCES_FOLDER = 'block-references'
+
+#Reference paths for block and material sprites
+#Joins together the current directory, the desired reference folder, and then appends a blank string to the end of the path (resulting in a path that ends with a slash)
+MATERIAL_REFERENCES = os.path.join(os.getcwd(), MATERIAL_REFERENCES_FOLDER, '')
+BLOCK_REFERENCES = os.path.join(os.getcwd(), BLOCK_REFERENCES_FOLDER, '')
 
 class Material:
     def __init__(self, name: str, parent_sprite_path: str, color: tuple):
@@ -29,6 +44,26 @@ class Material:
     
     def random_color():
         return (rint(-150, 150), rint(-150, 150), rint(-150, 150))
+    
+    def random_sprite():
+        return rch(os.listdir(MATERIAL_REFERENCES))
+    
+    def random_sprite_alt(path, color, name):
+        
+        new_sprite = Image.open(MATERIAL_REFERENCES + path).copy()
+        
+        Image.open(MATERIAL_REFERENCES + path).copy().save('/generated/' + name)
+        imgutils.grayscalify(MATERIAL_FILE_PATH)
+        imgutils.tint(MATERIAL_FILE_PATH, color)
+        imgutils.spin(MATERIAL_FILE_PATH)
+        imgutils.flip(MATERIAL_FILE_PATH)
+        
+        return new_sprite
+
+    #Randomly generates a material
+    def random():
+        path = Material.random_sprite_alt(Material.random_sprite(), Material.random_color())
+        return Material(Material.random_name(), , Material.random_color())
 
 class MaterialRaw(Material):
     def __init__ (self, name: str, parent_sprite_path: str, color: tuple):

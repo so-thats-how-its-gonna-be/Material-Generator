@@ -6,13 +6,11 @@ from tkinter import CENTER, Canvas, Frame, Tk
 
 from PIL import Image, ImageTk
 
-import material
 import imgutils
+import material
 
 #* Python 3.11.0
 #* Pillow 9.3.0
-
-WORD_LIST = [line.strip().split(' ') for line in open('wordlist.txt', 'r').readlines()]
 
 #Paths for instantiated sprites
 MATERIAL_FILE_PATH = 'material-instance.png'
@@ -34,23 +32,10 @@ def main():
     #Define the material name
     material_name = ''
 
-    #Generate a random name
-    match rint(0, 2):
-        case 0:
-            #Part 1 + Part 2 + Part 3 + Part 4
-            material_name = rch(WORD_LIST[0]) + rch(WORD_LIST[1]) + rch(WORD_LIST[2]) + rch(WORD_LIST[3])
-        case 1:
-            #Part 1 + Part 2 + Part 4
-            material_name = rch(WORD_LIST[0]) + rch(WORD_LIST[1]) + rch(WORD_LIST[3])
-        case 2:
-            #Part 1 + Part 3 + Part 4
-            material_name = rch(WORD_LIST[0]) + rch(WORD_LIST[2]) + rch(WORD_LIST[3])
-
-    #Make material name Title Case
-    material_name = material_name.capitalize()
+    material_name = material.Material.random_name().capitalize()
 
     #Color to be used for the material, in RGB format. These colors *should* be mild, but sometimes it generates a color that is too bright.
-    material_color = (rint(-150, 150), rint(-150, 150), rint(-150, 150))
+    material_color = material.Material.random_color()
 
     #Generate a material sprite
     Image.open(MATERIAL_REFERENCES + rch(os.listdir(MATERIAL_REFERENCES))).copy().save(MATERIAL_FILE_PATH)
