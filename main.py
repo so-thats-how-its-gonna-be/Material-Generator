@@ -29,27 +29,9 @@ IMG_SIZE = [192, 192]
 
 def main():
 
-    #Define the material name
-    material_name = ''
+    gm = material.Material.random()
 
-    material_name = material.Material.random_name().capitalize()
-
-    #Color to be used for the material, in RGB format. These colors *should* be mild, but sometimes it generates a color that is too bright.
-    material_color = material.Material.random_color()
-
-    #Generate a material sprite
-    Image.open(MATERIAL_REFERENCES + rch(os.listdir(MATERIAL_REFERENCES))).copy().save(MATERIAL_FILE_PATH)
-    imgutils.grayscalify(MATERIAL_FILE_PATH)
-    imgutils.tint(MATERIAL_FILE_PATH, material_color)
-    imgutils.spin(MATERIAL_FILE_PATH)
-    imgutils.flip(MATERIAL_FILE_PATH)
-
-    #Generate a block sprite
-    Image.open(BLOCK_REFERENCES + rch(os.listdir(BLOCK_REFERENCES))).copy().save(BLOCK_FILE_PATH)
-    imgutils.grayscalify(BLOCK_FILE_PATH)
-    imgutils.tint(BLOCK_FILE_PATH, tuple([number / 2 for number in material_color]))
-    imgutils.spin(BLOCK_FILE_PATH)
-    imgutils.flip(BLOCK_FILE_PATH)
+    gb = material.MaterialBlock(gm)
 
     #Root window
     root = Tk()
@@ -57,8 +39,8 @@ def main():
     frame = Frame(root)
 
     #Material name
-    ttk.Label(frame, text=material_name).grid(column=0, row=0)
-    frame_material_image = ImageTk.PhotoImage(Image.open(MATERIAL_FILE_PATH).copy().resize(IMG_SIZE, 0))
+    ttk.Label(frame, text=gm.name.capitalize()).grid(column=0, row=0)
+    frame_material_image = ImageTk.PhotoImage(Image.open(gm.parent_sprite).copy().resize(IMG_SIZE, 0))
     #Canvas containing the material sprite
     canvas_material = Canvas(frame, width=256, height=256)
     canvas_material.create_image(128, 128, image=frame_material_image, anchor=CENTER)
@@ -68,7 +50,7 @@ def main():
     ttk.Label(frame, text='\n\n').grid(column=0, row=2)
 
     #Name of block form
-    ttk.Label(frame, text=f"Block Of {material_name}").grid(column=0, row=3)
+    ttk.Label(frame, text=f"Block Of {gm.name.capitalize()}").grid(column=0, row=3)
     frame_block_image = ImageTk.PhotoImage(Image.open(BLOCK_FILE_PATH).copy().resize(IMG_SIZE, 0))
     #Canvas containing the block sprite
     canvas_block = Canvas(frame, width=IMG_SIZE[0]*4/3, height=IMG_SIZE[1]*4/3)

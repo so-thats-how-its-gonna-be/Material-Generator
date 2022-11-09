@@ -48,22 +48,23 @@ class Material:
     def random_sprite():
         return rch(os.listdir(MATERIAL_REFERENCES))
     
-    def random_sprite_alt(path, color, name):
+    def random_sprite_alt(path, color, name, tint=True, spin=True, flip=True):
         
-        new_sprite = Image.open(MATERIAL_REFERENCES + path).copy()
+        new_path = os.path.join(os.getcwd(), 'generated-materials', name + '.png')
         
-        Image.open(MATERIAL_REFERENCES + path).copy().save('/generated/' + name)
-        imgutils.grayscalify(MATERIAL_FILE_PATH)
-        imgutils.tint(MATERIAL_FILE_PATH, color)
-        imgutils.spin(MATERIAL_FILE_PATH)
-        imgutils.flip(MATERIAL_FILE_PATH)
+        #Create the generated-materials folder if it doesn't exist
+        if not os.path.exists(os.path.join(os.getcwd(), 'generated-materials')): os.mkdir(os.path.join(os.getcwd(), 'generated-materials'))
+        Image.open(MATERIAL_REFERENCES + path).copy().save(new_path)
+        imgutils.grayscalify(new_path)
+        if tint: imgutils.tint(new_path, color)
+        if spin: imgutils.spin(new_path)
+        if flip: imgutils.flip(new_path)
         
-        return new_sprite
-
-    #Randomly generates a material
+        return new_path
+    
     def random():
-        path = Material.random_sprite_alt(Material.random_sprite(), Material.random_color())
-        return Material(Material.random_name(), , Material.random_color())
+        material_name = Material.random_name()
+        return Material(material_name, Material.random_sprite_alt(Material.random_sprite(), Material.random_color(), material_name), Material.random_color())
 
 class MaterialRaw(Material):
     def __init__ (self, name: str, parent_sprite_path: str, color: tuple):
