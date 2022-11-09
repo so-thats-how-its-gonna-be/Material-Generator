@@ -48,23 +48,24 @@ class Material:
     def random_sprite():
         return rch(os.listdir(MATERIAL_REFERENCES))
     
-    def random_sprite_alt(path, color, name, tint=True, spin=True, flip=True):
+    def random_sprite_alt(path, color, name, tint=True, spin=True, flip=True, directory='generated-materials'):
         
-        new_path = os.path.join(os.getcwd(), 'generated-materials', name + '.png')
+        new_path = os.path.join(os.getcwd(), directory, name + '.png')
         
         #Create the generated-materials folder if it doesn't exist
-        if not os.path.exists(os.path.join(os.getcwd(), 'generated-materials')): os.mkdir(os.path.join(os.getcwd(), 'generated-materials'))
-        Image.open(MATERIAL_REFERENCES + path).copy().save(new_path)
+        if not os.path.exists(os.path.join(os.getcwd(), directory)): os.mkdir(os.path.join(os.getcwd(), directory))
+        Image.open(path).copy().save(new_path)
         imgutils.grayscalify(new_path)
         if tint: imgutils.tint(new_path, color)
         if spin: imgutils.spin(new_path)
         if flip: imgutils.flip(new_path)
-        
+
         return new_path
     
     def random():
         material_name = Material.random_name()
-        return Material(material_name, Material.random_sprite_alt(Material.random_sprite(), Material.random_color(), material_name), Material.random_color())
+        material_color = Material.random_color()
+        return Material(material_name, Material.random_sprite_alt(Material.random_sprite(), material_color, material_name), material_color)
 
 class MaterialRaw(Material):
     def __init__ (self, name: str, parent_sprite_path: str, color: tuple):
@@ -104,6 +105,9 @@ class MaterialBlock(Material):
         if block_color == None: block_color = material.color
         if block_parent_sprite_path == None: block_parent_sprite_path = material.parent_sprite
         super().__init__(block_name, block_parent_sprite_path, block_color)
+    
+    def random_sprite():
+        return rch(os.listdir(BLOCK_REFERENCES))
 
 # Unrefinable materials (like diamond or emerald)
 # material -> material block

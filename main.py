@@ -31,7 +31,7 @@ def main():
 
     gm = material.Material.random()
 
-    gb = material.MaterialBlock(gm)
+    gb = material.MaterialBlock(gm, parent_sprite_path=material.MaterialBlock.random_sprite_alt(material.MaterialBlock.random_sprite(), gm.color, gm.name, directory='generated-blocks'))
 
     #Root window
     root = Tk()
@@ -50,8 +50,8 @@ def main():
     ttk.Label(frame, text='\n\n').grid(column=0, row=2)
 
     #Name of block form
-    ttk.Label(frame, text=f"Block Of {gm.name.capitalize()}").grid(column=0, row=3)
-    frame_block_image = ImageTk.PhotoImage(Image.open(BLOCK_FILE_PATH).copy().resize(IMG_SIZE, 0))
+    ttk.Label(frame, text=gb.name).grid(column=0, row=3)
+    frame_block_image = ImageTk.PhotoImage(Image.open(gb.parent_sprite).copy().resize(IMG_SIZE, 0))
     #Canvas containing the block sprite
     canvas_block = Canvas(frame, width=IMG_SIZE[0]*4/3, height=IMG_SIZE[1]*4/3)
     canvas_block.create_image(IMG_SIZE[0]*2/3, IMG_SIZE[1]*2/3, image=frame_block_image, anchor=CENTER)
