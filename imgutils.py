@@ -4,6 +4,7 @@ from tkinter import Image
 
 from PIL import Image
 
+
 def grayscalify(path: str):
     """Make an image grayscale.
 
@@ -11,6 +12,7 @@ def grayscalify(path: str):
         path (str): Path of the file to grayscale.
     """
     Image.open(path).convert('LA').save(path)
+
 
 def tint(path: str, RGB: tuple):
     """Tint an image a color with RGB values. Floors RGB values to integers.
@@ -22,15 +24,17 @@ def tint(path: str, RGB: tuple):
     image = Image.open(path).convert('RGBA')
     output = []
     for pix in image.getdata():
-        #If the alpha value is 0, then the pixel is transparent, so we don't want to change it.
+        # If the alpha value is 0, then the pixel is transparent, so we don't want to change it.
         if pix[3] in list(range(1, 256)):
-            output.append((pix[0] + fl(RGB[0]), pix[1] + fl(RGB[1]), pix[2] + fl(RGB[2])))
+            output.append((pix[0] + fl(RGB[0]), pix[1] +
+                          fl(RGB[1]), pix[2] + fl(RGB[2])))
         else:
             output.append(pix)
     image.putdata(output)
     image.save(path)
 
-def spin(path: str, chance: int=3):
+
+def spin(path: str, chance: int = 3):
     """Randomly rotate an image with a chance to do nothing.
 
     Args:
@@ -41,7 +45,8 @@ def spin(path: str, chance: int=3):
         return
     Image.open(path).transpose(rint(2, 4)).save(path)
 
-def flip(path: str, chance: int=3):
+
+def flip(path: str, chance: int = 3):
     """Randomly flip an image with a chance to do nothing.
 
     Args:
