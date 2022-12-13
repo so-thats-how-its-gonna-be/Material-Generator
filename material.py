@@ -1,8 +1,10 @@
 import os
-import imgutils
 from random import choice as rch
 from random import randint as rint
+
 from PIL import Image
+
+import imgutils
 
 WORD_LIST = [line.strip().split(' ')
              for line in open('wordlist.txt', 'r').readlines()]
@@ -118,7 +120,7 @@ class MaterialBlock(Material):
         block_parent_sprite_path = parent_sprite_path
         if block_name == None:
             block_name = rch(
-                [f"{material.name} Block", f"Block Of {material.name}"])
+                [f"{material.name} Block", f"Block Of {material.name}", f"Compressed {material.name}"])
         if block_color == None:
             block_color = material.color
         if block_parent_sprite_path == None:

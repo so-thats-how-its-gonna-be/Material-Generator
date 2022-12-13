@@ -5,21 +5,10 @@ from tkinter import CENTER, Canvas, Frame, Tk
 from PIL import Image, ImageTk
 
 import material
+from material import BLOCK_REFERENCES_FOLDER
 
 # * Python 3.11.0
 # * Pillow 9.3.0
-
-# Paths for instantiated sprites
-MATERIAL_FILE_PATH = 'material-instance.png'
-BLOCK_FILE_PATH = 'block-instance.png'
-
-MATERIAL_REFERENCES_FOLDER = 'material-references'
-BLOCK_REFERENCES_FOLDER = 'block-references'
-
-# Reference paths for block and material sprites
-# Joins together the current directory, the desired reference folder, and then appends a blank string to the end of the path (resulting in a path that ends with a slash)
-MATERIAL_REFERENCES = os.path.join(os.getcwd(), MATERIAL_REFERENCES_FOLDER, '')
-BLOCK_REFERENCES = os.path.join(os.getcwd(), BLOCK_REFERENCES_FOLDER, '')
 
 # How large the sprites will appear in the GUI
 IMG_SIZE = [192, 192]
