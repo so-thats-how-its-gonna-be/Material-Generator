@@ -9,10 +9,6 @@ import imgutils
 WORD_LIST = [line.strip().split(' ')
              for line in open('wordlist.txt', 'r').readlines()]
 
-# Paths for instantiated sprites
-MATERIAL_FILE_PATH = 'material-instance.png'
-BLOCK_FILE_PATH = 'block-instance.png'
-
 MATERIAL_REFERENCES_FOLDER = 'material-references'
 BLOCK_REFERENCES_FOLDER = 'block-references'
 
