@@ -13,6 +13,9 @@ from material import BLOCK_REFERENCES_FOLDER
 # How large the sprites will appear in the GUI
 IMG_SIZE = [192, 192]
 
+def rerun():
+    root.destroy()
+    main()
 
 def main():
 
@@ -22,6 +25,7 @@ def main():
     ), BLOCK_REFERENCES_FOLDER, material.MaterialBlock.random_sprite()), gm.color, gm.name, directory='generated-blocks'))
 
     # Root window
+    global root
     root = Tk()
     root.title('Material Generator')
     frame = Frame(root)
@@ -49,12 +53,11 @@ def main():
         IMG_SIZE[0]*2/3, IMG_SIZE[1]*2/3, image=frame_block_image, anchor=CENTER)
     canvas_block.grid(column=0, row=4)
 
-    ttk.Button(frame, text="Regenerate").grid(column=0, row=87)
+    ttk.Button(frame, text="Regenerate", command=rerun).grid(column=0, row=87)
     ttk.Button(frame, text="Done", command=root.destroy).grid(column=0, row=88)
     frame.grid()
     root.mainloop()
 
 # * END OF MAIN
-
 
 main()
