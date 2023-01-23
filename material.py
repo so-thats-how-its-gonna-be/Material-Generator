@@ -48,7 +48,7 @@ class Material:
     def random_sprite():
         return rch(os.listdir(MATERIAL_REFERENCES))
 
-    def random_sprite_alt(path: str, color: tuple, name: str, tint: bool=True, spin: bool=True, flip: bool=True, directory: str='generated-materials'):
+    def random_sprite_alt(path: str, color: tuple, name: str, tint: bool = True, spin: bool = True, flip: bool = True, directory: str = 'generated-materials'):
 
         new_path = os.path.join(os.getcwd(), directory, name + '.png')
 

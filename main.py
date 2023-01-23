@@ -13,27 +13,28 @@ from material import BLOCK_REFERENCES_FOLDER
 # How large the sprites will appear in the GUI
 IMG_SIZE = [192, 192]
 
+global root
+
 def rerun():
     root.destroy()
     main()
 
 def main():
 
-    gm = material.Material.random()
+    generated_material = material.Material.random()
 
-    gb = material.MaterialBlock(gm, parent_sprite_path=material.MaterialBlock.random_sprite_alt(os.path.join(os.getcwd(
-    ), BLOCK_REFERENCES_FOLDER, material.MaterialBlock.random_sprite()), gm.color, gm.name, directory='generated-blocks'))
+    generated_material_block = material.MaterialBlock(generated_material, parent_sprite_path=material.MaterialBlock.random_sprite_alt(os.path.join(os.getcwd(
+    ), BLOCK_REFERENCES_FOLDER, material.MaterialBlock.random_sprite()), generated_material.color, generated_material.name, directory='generated-blocks'))
 
     # Root window
-    global root
     root = Tk()
     root.title('Material Generator')
     frame = Frame(root)
 
     # Material name
-    ttk.Label(frame, text=gm.name.capitalize()).grid(column=0, row=0)
+    ttk.Label(frame, text=generated_material.name.capitalize()).grid(column=0, row=0)
     frame_material_image = ImageTk.PhotoImage(
-        Image.open(gm.parent_sprite).copy().resize(IMG_SIZE, 0))
+        Image.open(generated_material.parent_sprite).copy().resize(IMG_SIZE, 0))
     # Canvas containing the material sprite
     canvas_material = Canvas(frame, width=256, height=256)
     canvas_material.create_image(
@@ -44,9 +45,9 @@ def main():
     ttk.Label(frame, text='\n\n').grid(column=0, row=2)
 
     # Name of block form
-    ttk.Label(frame, text=gb.name.title()).grid(column=0, row=3)
+    ttk.Label(frame, text=generated_material_block.name.title()).grid(column=0, row=3)
     frame_block_image = ImageTk.PhotoImage(
-        Image.open(gb.parent_sprite).copy().resize(IMG_SIZE, 0))
+        Image.open(generated_material_block.parent_sprite).copy().resize(IMG_SIZE, 0))
     # Canvas containing the block sprite
     canvas_block = Canvas(frame, width=IMG_SIZE[0]*4/3, height=IMG_SIZE[1]*4/3)
     canvas_block.create_image(
@@ -57,7 +58,5 @@ def main():
     ttk.Button(frame, text="Done", command=root.destroy).grid(column=0, row=88)
     frame.grid()
     root.mainloop()
-
-# * END OF MAIN
 
 main()
