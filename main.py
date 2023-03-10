@@ -14,7 +14,6 @@ from material import BLOCK_REFERENCES_FOLDER
 IMG_SIZE = [192, 192]
 
 global root
-
 def rerun():
     root.destroy()
     main()
@@ -27,6 +26,7 @@ def main():
     ), BLOCK_REFERENCES_FOLDER, material.MaterialBlock.random_sprite()), generated_material.color, generated_material.name, directory='generated-blocks'))
 
     # Root window
+    global root
     root = Tk()
     root.title('Material Generator')
     frame = Frame(root)
